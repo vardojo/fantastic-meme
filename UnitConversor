@@ -1,0 +1,51 @@
+public class UnitConversor {
+	private int value;
+	public double unidadConvertida;
+	char unit1;
+	char unit2;
+	
+	public UnitConversor(int value, char unit1, char unit2  ){
+		this.value=value;
+		this.unit1=unit1;
+		this.unit2=unit2;
+		new Unit(unit1);
+		new Unit(unit2);
+	}
+	
+	public double convert(){
+		return unidadConvertida=Unit.UCONVERT(value, unit1, unit2);
+	}
+	
+	public void show(){
+		System.out.println("El resultado es: " +convert());
+	}
+	
+	public static void main(String[] args) {
+		UnitConversor lalala = new UnitConversor(180,'d','r');
+		lalala.show();
+	}
+
+}
+
+public class Unit {
+		
+	public char unit;
+	
+	public Unit(char unit) {
+		this.unit=unit;
+	}
+	
+	public Unit(Unit unidad) {
+		new Unit (this.unit);
+	}
+
+	public static double UCONVERT(int value, char unit1, char unit2) {
+		double uConverted = 0;
+		if (unit1=='d' && unit2=='r'){
+			uConverted= value*Math.PI/180;
+		}else if (unit1=='r'&& unit2=='d'){
+			uConverted= value*180/Math.PI;
+		}
+		return uConverted;	
+	}
+	}
